@@ -41,15 +41,15 @@ class VolumeFactory:
 
     def create_volume(self) -> np.ndarray:
         """Generates the final master_grid array."""
-        # 1. Initialize with a random background
+        # Initialize withrandom background
         background = np.random.normal(0, 1, self.master_shape + (3,))
         master_grid = noise.normalize_vectors(background)
 
-        # 2. Create the pool of generated pattern blocks from the config
+        # Create pool of generated pattern blocks from the config
         pattern_pool = [self._create_pattern_instance(p_conf) for p_conf in self.config['pattern_pool']]
-        print(f"Created a pool of {len(pattern_pool)} pattern blocks.")
+        print(f"Create a pool of {len(pattern_pool)} pattern blocks.")
 
-        # 3. Tile the master grid with blocks from the pool
+        # tile the master grid with blocks from the pool
         print(f"Tiling the {self.master_shape} grid...")
         prob = self.grid_params['tiling_probability']
         for x in range(0, self.master_shape[0], self.block_size):
@@ -59,15 +59,15 @@ class VolumeFactory:
                         block = random.choice(pattern_pool)
                         master_grid[x:x+self.block_size, y:y+self.block_size, z:z+self.block_size] = block
         
-        # 4. Apply final, smooth noise to the entire volume
+        # Apply final, smooth noise to the entire volume
         final_noise_conf = self.config['final_noise']
         if final_noise_conf['type'] == 'simplex':
-            print("Applying final smooth Simplex noise...")
+            print("Applying final smooth Simplex noise")
 
             simplex_params = final_noise_conf.copy()
-            simplex_params.pop('type', None) # Safely remove the key
+            simplex_params.pop('type', None)
 
             master_grid = noise.apply_simplex_noise(master_grid, **simplex_params)
             
-        print("🎉 Volume generation complete!")
+        print(" Volume generated")
         return master_grid

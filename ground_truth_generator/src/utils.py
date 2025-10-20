@@ -13,4 +13,4 @@ def save_grid(grid: np.ndarray, directory: str, filename: str):
         os.makedirs(directory)
     filepath = os.path.join(directory, filename)
     np.save(filepath, grid)
-    print(f"✅ Grid saved successfully to {filepath}")
+    print(f"Grid saved successfully to {filepath}")

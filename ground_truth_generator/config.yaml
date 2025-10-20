@@ -33,7 +33,7 @@ pattern_pool:
       direction: [0, 1, 0]
     noise: # Apply random noise to this pattern
       type: "random"
-      level: 0.4
+      level: 0.3
       
   - name: "bending"
     type: "bending"
