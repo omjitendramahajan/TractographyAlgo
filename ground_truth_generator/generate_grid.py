@@ -1,6 +1,5 @@
 # generate_grid.py
 import yaml
-# In generate_grid.py (after editing __init__.py)
 from src import VolumeFactory, save_grid
 
 def main():
