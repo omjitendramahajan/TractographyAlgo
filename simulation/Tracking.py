@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import RegularGridInterpolator
 from matplotlib.collections import LineCollection
 
-from Agent import HybridAgent
-from DataGenerator import GroundTruth
+from .Agent import HybridAgent
+from .DataGenerator import GroundTruth
 
 # --- 1. Setup Environment and Data (Same as before) ---
 grid_size = 30
