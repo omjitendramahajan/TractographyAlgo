@@ -6,24 +6,24 @@ A tractography algorithm that prioritizes PSOCT (microscopy) orientation data ov
 
 ```
 TractographyAlgo/
-├── custom_tractography.py    # Main PSOCT-priority tractography script
-├── create_test_seed.py       # Generate small test seed masks
-├── simulation/               # 2D simulation experiments
-│   ├── Agent.py              # HybridAgent class
-│   ├── DataGenerator.py      # GroundTruth generator
-│   ├── ComparisonSimulation.py
-│   ├── CrossingFiberDemo.py
-│   ├── SeedSimulation.py
-│   └── Tracking.py
-├── notebooks/                # Jupyter notebooks
-├── figures/                  # Generated figures
-├── scripts/                  # Utility scripts
-├── TRK_outputs/              # Tractography outputs (auto-generated)
-│   └── Output1/
-│       ├── streamlines.trk
-│       └── streamlines_params.json
-├── cmc_hybrid/               # CMC hybrid package (external)
-└── fsl_streamlines/          # FSL streamlines package (external)
+├── tractography/              # Core package
+│   ├── __init__.py
+│   ├── bedpostx.py           # BEDPOSTX data loading (with memory-mapped option)
+│   ├── psoct.py              # PSOCT data loading
+│   ├── tracker.py            # PSOCTPriorityTracker (hybrid mode)
+│   └── tracker_draft.py      # Simplified BEDPOSTX-only tracker
+├── scripts/                   # Runnable scripts
+│   ├── run_tractography.py   # Main entry point
+│   └── create_test_seed.py   # Generate test seed masks
+├── tests/                     # Test scripts
+│   ├── checkdata.py          # BedpostxData testing
+│   └── test_3d_tracking.py   # 3D tracking simulation tests
+├── TRK_outputs/               # Tractography outputs (auto-generated)
+├── simulation/                # 2D simulation experiments
+├── notebooks/                 # Jupyter notebooks
+├── figures/                   # Generated figures
+├── cmc_hybrid/                # CMC hybrid package (external)
+└── fsl_streamlines/           # FSL streamlines package (external)
 ```
 
 ## Installation
@@ -34,48 +34,60 @@ conda create -n tractography python=3.11
 conda activate tractography
 
 # Install dependencies
-pip install numpy nibabel scipy matplotlib
+pip install numpy nibabel scipy matplotlib fslpy
 
-# Install cmc_hybrid
+# Install cmc_hybrid (optional)
 cd cmc_hybrid && pip install -e . && cd ..
-
-# Install fsleyes (optional, for visualization)
-pip install fsleyes
 ```
 
-## Usage
+## Quick Start
 
-### 1. Create a test seed
-```bash
-python create_test_seed.py /path/to/data.bedpostX
+### Option 1: Edit CONFIG and run (recommended)
+
+Edit the CONFIG dictionary in `scripts/run_tractography.py`:
+
+```python
+CONFIG = {
+    'bedpostx_dir': "/path/to/data.bedpostX_uncompressed",
+    'psoct_pattern': None,        # or glob pattern for PSOCT
+    'seed_mask': "/path/to/seed.nii.gz",
+    'output': "streamlines.trk",
+    'step_size': 0.1,             # mm
+    'max_steps': 2000,
+    'seeds_per_voxel': 10,
+    'angle_threshold': 60,
+    'use_memory_map': True,       # True = low RAM (~100MB)
+    'num_fibers': 1,
+}
 ```
 
-### 2. Run tractography
+Then run:
 ```bash
-python custom_tractography.py \
+python scripts/run_tractography.py
+```
+
+### Option 2: Command-line arguments
+
+```bash
+python scripts/run_tractography.py \
     --bedpostx /path/to/data.bedpostX \
-    --psoct "/path/to/psoct/Slice_*_EnAO_*.nii.gz" \
-    --seeds test_seed.nii.gz \
-    --output output.trk \
-    --deterministic
+    --seeds seed_mask.nii.gz \
+    --output output.trk
 ```
 
-### Command-line Arguments
+## Memory Modes
 
-| Argument | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `--bedpostx` | Yes | - | Path to .bedpostX directory |
-| `--psoct` | No | None | Glob pattern for PSOCT slides |
-| `--seeds` | Yes | - | Seed mask (NIfTI) |
-| `--output` | No | streamlines.trk | Output filename |
-| `--step-size` | No | 0.5 | Step size in mm |
-| `--max-steps` | No | 2000 | Max steps per direction |
-| `--seeds-per-voxel` | No | 1 | Seeds per voxel |
-| `--deterministic` | No | False | Use mean orientations (lower memory) |
+| Mode | RAM Usage | Speed | When to Use |
+|------|-----------|-------|-------------|
+| `use_memory_map=True` | ~100 MB | Slower | Development, low-RAM machines |
+| `use_memory_map=False` | ~5-15 GB | Fast | Production, high-RAM machines |
 
-### 3. Visualize results
+**Tip:** For full-brain tractography, use `use_memory_map=False` with sufficient RAM.
+
+## Visualize Results
+
 ```bash
-fsleyes brain_mask.nii.gz TRK_outputs/Output1/output.trk
+fsleyes /path/to/brain_mask.nii TRK_outputs/Output1/streamlines.trk
 ```
 
 ## Algorithm
@@ -85,6 +97,8 @@ The algorithm uses a **priority-based** approach:
 1. **PSOCT Priority**: If microscopy data exists at the current voxel, use it exclusively
 2. **BEDPOSTX Fallback**: Only use diffusion data where microscopy is absent
 3. **No Blending**: PSOCT is never diluted or averaged with diffusion data
+
+When PSOCT is not provided (`psoct_pattern=None`), the tracker uses BEDPOSTX probabilistic sampling only.
 
 ## Output
 
@@ -98,7 +112,7 @@ Each run creates a folder in `TRK_outputs/` containing:
 - nibabel
 - scipy
 - fslpy
-- cmc_hybrid (included)
+- matplotlib
 
 ## Credits
 

@@ -36,7 +36,7 @@ class BedpostxData:
         self.use_memory_map = use_memory_map
         
         # Load brain mask (reference for shape and affine)
-        mask_path = f"{bedpostx_dir}/nodif_brain_mask.nii"
+        mask_path = f"{bedpostx_dir}/nodif_brain_mask.nii.gz"
         self.mask_img = Image(mask_path)
         self.mask = np.asarray(self.mask_img[:]) > 0  # Bool mask: True if voxel is in brain
         self.affine = self.mask_img.voxToWorldMat  # 4x4 voxel-to-world transform matrix
@@ -165,33 +165,43 @@ class BedpostxData:
                 ph_vals = self.ph_samples[fiber_idx][i, j, k, :]  # (N_samples,)
                 f_vals = self.f_all_samples[fiber_idx][i, j, k, :]  # (N_samples,)
             
-            for sample_idx in range(self.n_samples):
-                # Convert spherical to Cartesian
-                theta = th_vals[sample_idx]
-                phi = ph_vals[sample_idx]
-                f = f_vals[sample_idx]
+            # Vectorized processing
+            # 1. Filter by volume fraction
+            mask = f_vals >= 0.01
+            if not np.any(mask):
+                continue
                 
-                # Skip if volume fraction too low
-                if f < 0.01:
-                    continue
-                
-                # Spherical to Cartesian conversion
-                x = np.sin(theta) * np.cos(phi)
-                y = np.sin(theta) * np.sin(phi)
-                z = np.cos(theta)
-                
-                orientation = np.array([x, y, z])
-                norm = np.linalg.norm(orientation)
-                
-                if norm > 0:
-                    all_orientations.append(orientation / norm)
-                    all_weights.append(f)  # Weight by anisotropy (volume fraction)
-        
-        if len(all_orientations) == 0:
+            th_masked = th_vals[mask]
+            ph_masked = ph_vals[mask]
+            f_masked = f_vals[mask]
+            
+            # 2. Spherical to Cartesian conversion (vectorized)
+            sin_th = np.sin(th_masked)
+            x = sin_th * np.cos(ph_masked)
+            y = sin_th * np.sin(ph_masked)
+            z = np.cos(th_masked)
+            
+            # Stack into (N, 3) matrix
+            vectors = np.stack([x, y, z], axis=1)
+            
+            # 3. Normalize
+            norms = np.linalg.norm(vectors, axis=1)
+            valid_norm = norms > 0
+            
+            if np.any(valid_norm):
+                all_orientations.append(vectors[valid_norm] / norms[valid_norm, np.newaxis])
+                all_weights.append(f_masked[valid_norm])
+
+        if not all_orientations:
             return None
+            
+        # Concatenate all populations
+        all_orientations = np.vstack(all_orientations)
+        all_weights = np.concatenate(all_weights)
         
         # Normalize weights
-        all_weights = np.array(all_weights)
+        if all_weights.sum() == 0:
+            return None
         all_weights = all_weights / all_weights.sum()
         
         # Sample one orientation weighted by volume fraction

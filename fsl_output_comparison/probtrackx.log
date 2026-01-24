@@ -1,0 +1,6 @@
+/Users/ommahajan/fsl/bin/probtrackx2 --seed=/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/test_seed.nii.gz --samples=/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP/merged --mask=/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP/nodif_brain_mask.nii.gz --dir=fsl_output_comparison --forcedir --nsamples=100 --steplength=0.1 --nsteps=2000 --cthr=0.5 --fibthresh=0.05 --sampvox=0.0 --opd 
+---------------------------------------------
+
+/Users/ommahajan/fsl/bin/probtrackx2 --seed=/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/test_seed.nii.gz --samples=/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP/merged --mask=/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP/nodif_brain_mask.nii.gz --dir=fsl_output_comparison --forcedir --nsamples=100 --steplength=0.1 --nsteps=2000 --cthr=0.5 --fibthresh=0.05 --sampvox=0.0 --opd --savepaths 
+---------------------------------------------
+

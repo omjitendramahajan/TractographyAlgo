@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-01-24T14:50:00.649692",
+  "output_file": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/scripts/TRK_outputs/Output_20260124_144948/streamlines_new.trk",
+  "bedpostx_dir": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP",
+  "psoct_pattern": null,
+  "seed_mask": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP/nodif_brain_mask.nii.gz",
+  "parameters": {
+    "step_size": 0.2,
+    "max_steps": 2000,
+    "seeds_per_voxel": 1,
+    "deterministic": true
+  },
+  "results": {
+    "total_streamlines": 1195799,
+    "total_seed_voxels": 1415667,
+    "psoct_steps": 0,
+    "bedpostx_steps": 29829342,
+    "psoct_usage_pct": 0.0
+  },
+  "data_info": {
+    "volume_shape": [
+      346,
+      346,
+      112
+    ],
+    "voxel_size": [
+      0.4046242833137512,
+      0.4046242833137512,
+      0.40000152587890625
+    ],
+    "num_psoct_slides": 0
+  }
+}
