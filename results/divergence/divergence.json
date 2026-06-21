@@ -1,0 +1,158 @@
+{
+  "divergence_fraction_pct": {
+    "pooled": 13.079751054264563,
+    "per_run": {
+      "n": 10,
+      "mean": 13.079783534590538,
+      "std": 0.026251865610418538,
+      "min": 13.042017418224475,
+      "max": 13.124813044872834
+    },
+    "definition": "100 * sum(divergence_map) / psoct_constrained_steps"
+  },
+  "trend": {
+    "definition": "pooled rate = sum(divergence_counts)/sum(visit_count) over visited voxels in each fibre-fraction bin (outlier-robust); median = median per-voxel divergence_counts/visit_count",
+    "bin_edges": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "f2": [
+      {
+        "lo": 0.0,
+        "hi": 0.05,
+        "center": 0.025,
+        "n_voxels": 789,
+        "pooled_rate": 0.0,
+        "median_rate": 0.0
+      },
+      {
+        "lo": 0.05,
+        "hi": 0.1,
+        "center": 0.07500000000000001,
+        "n_voxels": 1049,
+        "pooled_rate": 2.1956947162426617,
+        "median_rate": 0.0
+      },
+      {
+        "lo": 0.1,
+        "hi": 0.15,
+        "center": 0.125,
+        "n_voxels": 1486,
+        "pooled_rate": 4.166296021744502,
+        "median_rate": 1.0
+      },
+      {
+        "lo": 0.15,
+        "hi": 0.2,
+        "center": 0.175,
+        "n_voxels": 1885,
+        "pooled_rate": 5.034171075837743,
+        "median_rate": 1.25
+      },
+      {
+        "lo": 0.2,
+        "hi": 0.3,
+        "center": 0.25,
+        "n_voxels": 2585,
+        "pooled_rate": 4.214336712837356,
+        "median_rate": 1.0
+      },
+      {
+        "lo": 0.3,
+        "hi": 0.5,
+        "center": 0.4,
+        "n_voxels": 825,
+        "pooled_rate": 2.1998660863742887,
+        "median_rate": 1.0
+      },
+      {
+        "lo": 0.5,
+        "hi": 1.0,
+        "center": 0.75,
+        "n_voxels": 0,
+        "pooled_rate": NaN,
+        "median_rate": NaN
+      }
+    ],
+    "f3": [
+      {
+        "lo": 0.0,
+        "hi": 0.05,
+        "center": 0.025,
+        "n_voxels": 3289,
+        "pooled_rate": 1.8505908602594827,
+        "median_rate": 0.0
+      },
+      {
+        "lo": 0.05,
+        "hi": 0.1,
+        "center": 0.07500000000000001,
+        "n_voxels": 2009,
+        "pooled_rate": 3.7695756605284227,
+        "median_rate": 1.0
+      },
+      {
+        "lo": 0.1,
+        "hi": 0.15,
+        "center": 0.125,
+        "n_voxels": 2034,
+        "pooled_rate": 5.478270364708451,
+        "median_rate": 1.7916666666666665
+      },
+      {
+        "lo": 0.15,
+        "hi": 0.2,
+        "center": 0.175,
+        "n_voxels": 910,
+        "pooled_rate": 4.931182795698925,
+        "median_rate": 1.0
+      },
+      {
+        "lo": 0.2,
+        "hi": 0.3,
+        "center": 0.25,
+        "n_voxels": 371,
+        "pooled_rate": 4.516733601070951,
+        "median_rate": 1.6
+      },
+      {
+        "lo": 0.3,
+        "hi": 0.5,
+        "center": 0.4,
+        "n_voxels": 6,
+        "pooled_rate": 9.714285714285714,
+        "median_rate": 5.0
+      },
+      {
+        "lo": 0.5,
+        "hi": 1.0,
+        "center": 0.75,
+        "n_voxels": 0,
+        "pooled_rate": NaN,
+        "median_rate": NaN
+      }
+    ]
+  },
+  "crossing_vs_single": {
+    "definition": "pooled rate = sum(divergence)/sum(visits) within group; Mann-Whitney U on the per-voxel rates",
+    "f_min": 0.3,
+    "crossing": {
+      "n_voxels": 825,
+      "pooled_rate": 2.1998660863742887,
+      "median_rate": 1.0
+    },
+    "single": {
+      "n_voxels": 7794,
+      "pooled_rate": 3.4171248669741043,
+      "median_rate": 1.0
+    },
+    "mannwhitney_u": 3417989.0,
+    "p_value": 0.0020443834313709427
+  }
+}

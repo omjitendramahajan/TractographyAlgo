@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-05-30T12:01:56.108877",
+  "config": {
+    "bedpostx_dir": "DATA/data.bedpostX_SSFP_uncompressed",
+    "psoct_slides": "DATA/PS-OCT/Coregistered/FLIRT/Orientations/lowres",
+    "center": [
+      173,
+      173,
+      50
+    ],
+    "radius": 25,
+    "f_min": 0.6,
+    "n_voxels": 1000,
+    "min_pix": 10,
+    "seed": 0,
+    "out_dir": null
+  },
+  "n_voxels_compared": 1000,
+  "inplane_angle_deg": {
+    "median": 8.139026845938997,
+    "mean": 14.09423972727868,
+    "p25": 4.001383758436028,
+    "p75": 15.470940095085481,
+    "frac_lt20": 0.818,
+    "frac_lt30": 0.875
+  },
+  "angle_3d_deg": {
+    "median": 14.358072589549195,
+    "mean": 23.154298791342132,
+    "p25": 8.965984250136556,
+    "p75": 27.753163583348908,
+    "frac_lt20": 0.656,
+    "frac_lt30": 0.765
+  },
+  "shuffled_null_deg": {
+    "median": 28.228824864727436,
+    "mean": 34.9677350415734,
+    "p25": 15.983256276793078,
+    "p75": 50.3143538132046,
+    "frac_lt20": 0.339,
+    "frac_lt30": 0.539
+  }
+}

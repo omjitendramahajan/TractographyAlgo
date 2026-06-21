@@ -1,0 +1,122 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=8:mem=32gb
+#PBS -l walltime=10:00:00
+#PBS -N tractography_job
+
+# Load Python module (adjust version as necessary based on ICL HPC availability)
+module load Python/3.12.3-GCCcore-13.3.0
+
+# Activate the virtual environment we created earlier (so it has numpy, nibabel, etc.)
+source $HOME/tract_env/bin/activate
+
+# Change to the directory the job was submitted from
+cd $PBS_O_WORKDIR
+
+# IMPORTANT: Update these paths to match where your data lives on the HPC!
+# They will likely look like /rds/general/user/YOUR_USERNAME/...
+PERSISTENT_BEDPOSTX="$HOME/Final_Year_Project/DATA/data.bedpostX_SSFP_uncompressed"
+PERSISTENT_SEED="$HOME/TractographyAlgo/Registering_Masks/FMA/Moe_rebinarised/FMA_seed_Moe_bin.nii.gz"
+PERSISTENT_TARGET="$HOME/TractographyAlgo/Registering_Masks/FMA/Moe_rebinarised/FMA_target_Moe_bin.nii.gz"
+PERSISTENT_EXCLUDE="$HOME/TractographyAlgo/Registering_Masks/FMA/Moe_rebinarised/FMA_exclude_Moe_bin.nii.gz"
+
+# Optional Data: PSOCT slides directory.
+# To ADD PSOCT data, simply uncomment the line below and ensure the path is correct.
+# To REMOVE PSOCT data, comment it out again.
+PERSISTENT_PSOCT="$HOME/project/DATA/PS-OCT/Coregistered/FLIRT/Orientations/lowres"
+
+# Optional Data: stop mask (streamlines terminate on entry, are kept).
+# Uncomment to use; leave commented to disable.
+# PERSISTENT_STOP="$HOME/TractographyAlgo/Registering_Masks/FMA/Moe_rebinarised/FMA_stop_Moe_bin.nii.gz"
+
+# Tracking Parameters (full set — edit any of these)
+STEP_SIZE=0.2
+MAX_STEPS=2000
+SEEDS_PER_VOXEL=10
+ANGLE_THRESHOLD=60.0
+MIN_F_THRESHOLD=0.05
+NUM_FIBERS=3
+USE_MEMORY_MAP=false          # true = low RAM / slower, false = preload arrays (fast, high RAM)
+
+# Hybrid (PSOCT) parameters — only take effect when PERSISTENT_PSOCT is set.
+#   PSOCT_INPLANE_THRESHOLD: voxel gate; defer to BedpostX when the f-weighted
+#       in-plane dyad magnitude falls below this (raise -> more BedpostX-like).
+#   ALPHA: blend coefficient. alpha=1 -> trajectory only (== baseline),
+#       alpha=0 -> PS-OCT alignment only. Default 0.5.
+PSOCT_INPLANE_THRESHOLD=0.3
+ALPHA=0.5
+
+# Output configuration
+OUTPUT_BASENAME="FMA_tract_seed_10seeds_Bedpostx.trk"
+PERSISTENT_OUTDIR="$PBS_O_WORKDIR/TRK_outputs"
+
+echo "=========================================================="
+echo "Starting job on compute node: $(hostname)"
+echo "Staging data to local compute node TMPDIR: $TMPDIR"
+echo "=========================================================="
+
+# Copy data to the node's local temporary directory ($TMPDIR)
+cp -r "$PERSISTENT_BEDPOSTX" $TMPDIR/
+cp "$PERSISTENT_SEED" $TMPDIR/
+cp "$PERSISTENT_TARGET" $TMPDIR/
+cp "$PERSISTENT_EXCLUDE" $TMPDIR/
+
+# Get the basenames of the files we just copied to construct the TMPDIR paths
+BEDPOSTX_DIR_NAME=$(basename "$PERSISTENT_BEDPOSTX")
+SEED_NAME=$(basename "$PERSISTENT_SEED")
+TARGET_NAME=$(basename "$PERSISTENT_TARGET")
+EXCLUDE_NAME=$(basename "$PERSISTENT_EXCLUDE")
+
+# Handle optional PSOCT data
+if [ -n "$PERSISTENT_PSOCT" ]; then
+    echo "Staging PSOCT data..."
+    cp -r "$PERSISTENT_PSOCT" $TMPDIR/
+    PSOCT_DIR_NAME=$(basename "$PERSISTENT_PSOCT")
+    PSOCT_ARG="--psoct_slides $TMPDIR/$PSOCT_DIR_NAME"
+else
+    PSOCT_ARG=""
+fi
+
+# Handle optional stop mask
+if [ -n "$PERSISTENT_STOP" ]; then
+    echo "Staging stop mask..."
+    cp "$PERSISTENT_STOP" $TMPDIR/
+    STOP_NAME=$(basename "$PERSISTENT_STOP")
+    STOP_ARG="--stop_mask $TMPDIR/$STOP_NAME"
+else
+    STOP_ARG=""
+fi
+
+echo "Data staged successfully. Running tractography..."
+
+# Run the python script from the submission directory, passing the $TMPDIR paths as arguments.
+# This ensures that all reading and writing occurs on the fast local disk.
+python run_tractography_HPC.py \
+    --bedpostx_dir "$TMPDIR/$BEDPOSTX_DIR_NAME" \
+    --seed_mask "$TMPDIR/$SEED_NAME" \
+    --target_mask "$TMPDIR/$TARGET_NAME" \
+    --exclude_mask "$TMPDIR/$EXCLUDE_NAME" \
+    --output "$OUTPUT_BASENAME" \
+    --output_dir "$TMPDIR/output" \
+    --step_size $STEP_SIZE \
+    --max_steps $MAX_STEPS \
+    --seeds_per_voxel $SEEDS_PER_VOXEL \
+    --angle_threshold $ANGLE_THRESHOLD \
+    --min_f_threshold $MIN_F_THRESHOLD \
+    --num_fibers $NUM_FIBERS \
+    --use_memory_map $USE_MEMORY_MAP \
+    --psoct_inplane_threshold $PSOCT_INPLANE_THRESHOLD \
+    --alpha $ALPHA \
+    $STOP_ARG \
+    $PSOCT_ARG
+
+echo "=========================================================="
+echo "Tractography finished. Copying results back to persistent storage..."
+echo "=========================================================="
+
+# Create the persistent output directory if it doesn't already exist
+mkdir -p "$PERSISTENT_OUTDIR"
+
+# Copy the generated timestamped output folder from TMPDIR back to the persistent storage
+cp -r $TMPDIR/output/* "$PERSISTENT_OUTDIR/"
+
+echo "Job complete!"

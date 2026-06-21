@@ -1,0 +1,183 @@
+{
+  "timestamp": "2026-05-29T23:43:07.295397",
+  "output_file": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/Output_20260529_234307/CC_tract_seed_PSOCT.trk",
+  "bedpostx_dir": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/data.bedpostX_SSFP_uncompressed",
+  "seed_mask": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/Registering_Masks/manual_seed_170_150_55_4x4x4.nii.gz",
+  "psoct_slides": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/DATA/PS-OCT/Coregistered/FLIRT/Orientations/lowres",
+  "target_mask": null,
+  "exclude_mask": null,
+  "stop_mask": null,
+  "mode": "psoct_constrained",
+  "parameters": {
+    "step_size": 0.2,
+    "max_steps": 100,
+    "seeds_per_voxel": 1,
+    "angle_threshold": 60,
+    "min_f_threshold": 0.05,
+    "psoct_inplane_threshold": 0.3
+  },
+  "results": {
+    "total_streamlines": 64,
+    "total_seed_voxels": 64,
+    "psoct_constrained_steps": 10227,
+    "bedpostx_only_steps": 28,
+    "terminations": {
+      "per_direction": {
+        "terminated_angle": 83,
+        "terminated_boundary": 0,
+        "terminated_low_f": 4,
+        "terminated_max_steps": 41,
+        "terminated_no_data": 0,
+        "terminated_stop": 0
+      },
+      "per_streamline_rejected": {
+        "terminated_exclude": 0,
+        "rejected_no_target": 0
+      },
+      "totals": {
+        "total_streamlines_attempted": 64,
+        "valid_streamlines": 64,
+        "total_termination_events": 128
+      },
+      "geometry": {
+        "length_mm": {
+          "n": 64,
+          "mean": 31.775000000000002,
+          "min": 0.8,
+          "q25": 28.1,
+          "median": 32.7,
+          "q75": 37.45,
+          "max": 40.0
+        },
+        "step_count": {
+          "n": 64,
+          "mean": 158.875,
+          "min": 4.0,
+          "q25": 140.5,
+          "median": 163.5,
+          "q75": 187.25,
+          "max": 200.0
+        },
+        "turn_angle_deg_mean_per_streamline": {
+          "n": 64,
+          "mean": 9.513687184073111,
+          "min": 6.19743645251832,
+          "q25": 8.710977599124185,
+          "median": 9.471239716789334,
+          "q75": 10.244838778434882,
+          "max": 14.400028696496687
+        },
+        "turn_angle_deg_max_per_streamline": {
+          "n": 64,
+          "mean": 53.276273402946714,
+          "min": 17.4736711204066,
+          "q25": 50.60388502050209,
+          "median": 54.784689435085184,
+          "q75": 57.42707864103766,
+          "max": 71.48840928808052
+        },
+        "turn_angle_deg_all_steps": {
+          "n": 10104,
+          "mean": 9.55824481348016,
+          "min": 0.0,
+          "q25": 2.4572637866273688,
+          "median": 5.686692260413963,
+          "q75": 12.514644993089924,
+          "max": 71.48840928808052
+        }
+      },
+      "usage": {
+        "psoct_fraction_per_streamline": {
+          "n": 64,
+          "mean": 0.9978402844327025,
+          "min": 0.9651741293532339,
+          "q25": 1.0,
+          "median": 1.0,
+          "q75": 1.0,
+          "max": 1.0
+        },
+        "psoct_fraction_buckets": {
+          "0%": 0,
+          "0-25%": 0,
+          "25-75%": 0,
+          "75-100%": 9,
+          "100%": 55
+        }
+      },
+      "terminations_by_step_count": {
+        "terminated_angle": {
+          "n": 83,
+          "mean": 69.62650602409639,
+          "min": 2.0,
+          "q25": 52.5,
+          "median": 73.0,
+          "q75": 88.5,
+          "max": 99.0
+        },
+        "terminated_boundary": {
+          "n": 0,
+          "mean": null,
+          "min": null,
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "max": null
+        },
+        "terminated_low_f": {
+          "n": 4,
+          "mean": 72.25,
+          "min": 52.0,
+          "q25": 55.0,
+          "median": 71.5,
+          "q75": 88.75,
+          "max": 94.0
+        },
+        "terminated_max_steps": {
+          "n": 41,
+          "mean": 100.0,
+          "min": 100.0,
+          "q25": 100.0,
+          "median": 100.0,
+          "q75": 100.0,
+          "max": 100.0
+        },
+        "terminated_no_data": {
+          "n": 0,
+          "mean": null,
+          "min": null,
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "max": null
+        },
+        "terminated_stop": {
+          "n": 0,
+          "mean": null,
+          "min": null,
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "max": null
+        }
+      },
+      "spatial_coverage": {
+        "unique_voxels_visited": 2918,
+        "streamline_visits_total": 6032,
+        "volume_voxels": 13408192,
+        "fraction_covered": 0.00021762814852293284
+      }
+    }
+  },
+  "data_info": {
+    "volume_shape": [
+      346,
+      346,
+      112
+    ],
+    "voxel_size": [
+      0.4046242833137512,
+      0.4046242833137512,
+      0.40000152587890625
+    ]
+  }
+}

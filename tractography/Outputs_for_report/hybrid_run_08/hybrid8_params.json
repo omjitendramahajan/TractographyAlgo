@@ -1,0 +1,183 @@
+{
+  "timestamp": "2026-05-31T21:05:05.785042",
+  "output_file": "/var/tmp/pbs.2898808.pbs-7/output/Output_20260531_210505/hybrid8.trk",
+  "bedpostx_dir": "/var/tmp/pbs.2898808.pbs-7/data.bedpostX_SSFP_uncompressed",
+  "seed_mask": "/var/tmp/pbs.2898808.pbs-7/FMA_seed_Moe_bin.nii.gz",
+  "psoct_slides": "/var/tmp/pbs.2898808.pbs-7/lowres",
+  "target_mask": "/var/tmp/pbs.2898808.pbs-7/FMA_target_Moe_bin.nii.gz",
+  "exclude_mask": "/var/tmp/pbs.2898808.pbs-7/FMA_exclude_Moe_bin.nii.gz",
+  "stop_mask": null,
+  "mode": "psoct_constrained",
+  "parameters": {
+    "step_size": 0.2,
+    "max_steps": 2000,
+    "seeds_per_voxel": 10,
+    "angle_threshold": 60.0,
+    "min_f_threshold": 0.05,
+    "psoct_inplane_threshold": 0.3
+  },
+  "results": {
+    "total_streamlines": 149,
+    "total_seed_voxels": 17433,
+    "psoct_constrained_steps": 4439568,
+    "bedpostx_only_steps": 208528,
+    "terminations": {
+      "per_direction": {
+        "terminated_angle": 199400,
+        "terminated_boundary": 7061,
+        "terminated_low_f": 62870,
+        "terminated_max_steps": 0,
+        "terminated_no_data": 158,
+        "terminated_stop": 0
+      },
+      "per_streamline_rejected": {
+        "terminated_exclude": 1469,
+        "rejected_no_target": 123879
+      },
+      "totals": {
+        "total_streamlines_attempted": 174330,
+        "valid_streamlines": 149,
+        "total_termination_events": 269489
+      },
+      "geometry": {
+        "length_mm": {
+          "n": 149,
+          "mean": 59.88456375838927,
+          "min": 41.800000000000004,
+          "q25": 52.6,
+          "median": 58.0,
+          "q75": 65.2,
+          "max": 113.0
+        },
+        "step_count": {
+          "n": 149,
+          "mean": 299.4228187919463,
+          "min": 209.0,
+          "q25": 263.0,
+          "median": 290.0,
+          "q75": 326.0,
+          "max": 565.0
+        },
+        "turn_angle_deg_mean_per_streamline": {
+          "n": 149,
+          "mean": 10.886635623487845,
+          "min": 7.779412036734358,
+          "q25": 9.88791716957425,
+          "median": 10.838116253517246,
+          "q75": 11.780184844583573,
+          "max": 15.30225117594363
+        },
+        "turn_angle_deg_max_per_streamline": {
+          "n": 149,
+          "mean": 57.29768696167635,
+          "min": 45.60028582645646,
+          "q25": 55.8046039780875,
+          "median": 57.95037348147159,
+          "q75": 59.367542535346495,
+          "max": 60.25699265347703
+        },
+        "turn_angle_deg_all_steps": {
+          "n": 44465,
+          "mean": 11.004420731868386,
+          "min": 0.0,
+          "q25": 2.6232426528725563,
+          "median": 6.385729610600186,
+          "q75": 14.61743077193932,
+          "max": 60.25699265347703
+        }
+      },
+      "usage": {
+        "psoct_fraction_per_streamline": {
+          "n": 149,
+          "mean": 0.9434895928454823,
+          "min": 0.8262411347517731,
+          "q25": 0.9032258064516129,
+          "median": 0.9611650485436893,
+          "q75": 0.9898648648648649,
+          "max": 1.0
+        },
+        "psoct_fraction_buckets": {
+          "0%": 0,
+          "0-25%": 0,
+          "25-75%": 0,
+          "75-100%": 134,
+          "100%": 15
+        }
+      },
+      "terminations_by_step_count": {
+        "terminated_angle": {
+          "n": 199400,
+          "mean": 18.691524573721164,
+          "min": 1.0,
+          "q25": 3.0,
+          "median": 7.0,
+          "q75": 22.0,
+          "max": 454.0
+        },
+        "terminated_boundary": {
+          "n": 7061,
+          "mean": 7.61662654015012,
+          "min": 0.0,
+          "q25": 0.0,
+          "median": 1.0,
+          "q75": 4.0,
+          "max": 267.0
+        },
+        "terminated_low_f": {
+          "n": 62870,
+          "mean": 7.315253698107205,
+          "min": 0.0,
+          "q25": 0.0,
+          "median": 1.0,
+          "q75": 5.0,
+          "max": 336.0
+        },
+        "terminated_max_steps": {
+          "n": 0,
+          "mean": null,
+          "min": null,
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "max": null
+        },
+        "terminated_no_data": {
+          "n": 158,
+          "mean": 14.215189873417721,
+          "min": 1.0,
+          "q25": 4.0,
+          "median": 6.0,
+          "q75": 13.75,
+          "max": 95.0
+        },
+        "terminated_stop": {
+          "n": 0,
+          "mean": null,
+          "min": null,
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "max": null
+        }
+      },
+      "spatial_coverage": {
+        "unique_voxels_visited": 8846,
+        "streamline_visits_total": 26264,
+        "volume_voxels": 13408192,
+        "fraction_covered": 0.0006597459224927567
+      }
+    }
+  },
+  "data_info": {
+    "volume_shape": [
+      346,
+      346,
+      112
+    ],
+    "voxel_size": [
+      0.4046242833137512,
+      0.4046242833137512,
+      0.40000152587890625
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "generated": "2026-06-01T13:04:26",
+  "config": {
+    "f_min": 0.05,
+    "density_threshold": 1,
+    "ftc_thresholds": [
+      1,
+      5
+    ],
+    "hybrid_default": "hybrid_run_01",
+    "baseline_default": "baseline_run_01"
+  },
+  "voxel_volume_mm3": 0.06548857407699822,
+  "volume_overlap": {
+    "hybrid": {
+      "volume_mm3": {
+        "n": 0,
+        "mean": null,
+        "std": null,
+        "min": null,
+        "max": null
+      },
+      "streamline_count": {
+        "n": 0,
+        "mean": null,
+        "std": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "baseline": {
+      "volume_mm3": {
+        "n": 3,
+        "mean": 2862.1999595598995,
+        "std": 120.74219331946526,
+        "min": 2701.9275892687924,
+        "max": 2993.351743911435
+      },
+      "streamline_count": {
+        "n": 3,
+        "mean": 967.3333333333334,
+        "std": 42.405450383438,
+        "min": 922.0,
+        "max": 1024.0
+      }
+    }
+  },
+  "divergence": {
+    "crossing_vs_single": {
+      "skipped": "needs representative divergence map + visit map + mean_f2 on matching grid"
+    }
+  },
+  "sensitivity": {
+    "alpha": {
+      "rows": [
+        {
+          "value": 0.0,
+          "folder": "sweep_alpha_00",
+          "missing": true
+        },
+        {
+          "value": 0.25,
+          "folder": "sweep_alpha_025",
+          "missing": true
+        },
+        {
+          "value": 0.5,
+          "folder": "hybrid_run_01",
+          "missing": true
+        },
+        {
+          "value": 0.75,
+          "folder": "sweep_alpha_075",
+          "missing": true
+        },
+        {
+          "value": 1.0,
+          "folder": "sweep_alpha_10",
+          "missing": true
+        }
+      ],
+      "volume_range_pct": null,
+      "dice_vs_baseline_lo": null,
+      "dice_vs_baseline_hi": null
+    },
+    "theta": {
+      "rows": [
+        {
+          "value": 45,
+          "folder": "sweep_theta_45",
+          "missing": true
+        },
+        {
+          "value": 60,
+          "folder": "hybrid_run_01",
+          "missing": true
+        },
+        {
+          "value": 80,
+          "folder": "sweep_theta_80",
+          "missing": true
+        }
+      ],
+      "volume_range_pct": null,
+      "dice_vs_reference_lo": null,
+      "dice_vs_reference_hi": null,
+      "dice_vs_baseline_lo": null,
+      "dice_vs_baseline_hi": null
+    },
+    "psoct_inplane_threshold": {
+      "rows": [
+        {
+          "value": 1.0,
+          "folder": "sweep_thresh_100",
+          "missing": true
+        },
+        {
+          "value": 0.5,
+          "folder": "sweep_thresh_050",
+          "missing": true
+        },
+        {
+          "value": 0.3,
+          "folder": "hybrid_run_01",
+          "missing": true
+        },
+        {
+          "value": 0.1,
+          "folder": "sweep_thresh_010",
+          "missing": true
+        }
+      ],
+      "volume_range_pct": null
+    },
+    "density_thinning": {
+      "rows": [
+        {
+          "value": "full (every slice)",
+          "folder": "hybrid_run_01",
+          "missing": true
+        },
+        {
+          "value": "every 2nd",
+          "folder": "density_every_2nd",
+          "missing": true
+        },
+        {
+          "value": "every 4th",
+          "folder": "density_every_4th",
+          "missing": true
+        }
+      ]
+    }
+  },
+  "reproducibility": {
+    "hybrid": {
+      "n_runs": 0,
+      "note": "need >=2 runs"
+    },
+    "baseline": {
+      "n_runs": 3,
+      "n_pairs": 3,
+      "ftc_T1": {
+        "n": 3,
+        "mean": 0.45668344107606235,
+        "std": 0.005520432750739842,
+        "min": 0.44911602022464286,
+        "max": 0.4621294910808857
+      },
+      "ftc_T1_pairs": [
+        0.4588048119226586,
+        0.4621294910808857,
+        0.44911602022464286
+      ],
+      "ftc_T5": {
+        "n": 3,
+        "mean": 0.6049676994848879,
+        "std": 0.01078665224000117,
+        "min": 0.5897347273827012,
+        "max": 0.6132879045996593
+      },
+      "ftc_T5_pairs": [
+        0.6132879045996593,
+        0.5897347273827012,
+        0.6118804664723032
+      ],
+      "ftc_continuous": {
+        "n": 3,
+        "mean": 0.5888984476553588,
+        "std": 0.009025024022798788,
+        "min": 0.5783485219177978,
+        "max": 0.6003944143110779
+      }
+    }
+  },
+  "reference_overlap": {
+    "skipped": "reference_mask not set (edit REFERENCE_MASK in common.py)"
+  },
+  "held_out": {
+    "skipped": "held-out run 'held_out_even' not found"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "hybrid": {
+    "volume_mm3": {
+      "n": 0,
+      "mean": null,
+      "std": null,
+      "min": null,
+      "max": null
+    },
+    "streamline_count": {
+      "n": 0,
+      "mean": null,
+      "std": null,
+      "min": null,
+      "max": null
+    }
+  },
+  "baseline": {
+    "volume_mm3": {
+      "n": 2,
+      "mean": 2942.336144705453,
+      "std": 51.015599205981744,
+      "min": 2891.3205454994713,
+      "max": 2993.351743911435
+    },
+    "streamline_count": {
+      "n": 2,
+      "mean": 990.0,
+      "std": 34.0,
+      "min": 956.0,
+      "max": 1024.0
+    }
+  }
+}

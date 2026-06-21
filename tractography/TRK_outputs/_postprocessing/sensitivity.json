@@ -1,0 +1,102 @@
+{
+  "alpha": {
+    "rows": [
+      {
+        "value": 0.0,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_alpha_00/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 0.25,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_alpha_025/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 0.5,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/hybrid_run_01/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 0.75,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_alpha_075/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 1.0,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_alpha_10/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      }
+    ],
+    "volume_range_pct": null,
+    "dice_vs_baseline_lo": null,
+    "dice_vs_baseline_hi": null
+  },
+  "theta": {
+    "rows": [
+      {
+        "value": 45,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_theta_45/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 60,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/hybrid_run_01/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 80,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_theta_80/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      }
+    ],
+    "volume_range_pct": null,
+    "dice_vs_reference_lo": null,
+    "dice_vs_reference_hi": null,
+    "dice_vs_baseline_lo": null,
+    "dice_vs_baseline_hi": null
+  },
+  "psoct_inplane_threshold": {
+    "rows": [
+      {
+        "value": 1.0,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_thresh_100/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 0.5,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_thresh_050/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 0.3,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/hybrid_run_01/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": 0.1,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/sweep_thresh_010/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      }
+    ],
+    "volume_range_pct": null
+  },
+  "density_thinning": {
+    "rows": [
+      {
+        "value": "full (every slice)",
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/hybrid_run_01/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": "every 2nd",
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/density_every_2nd/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      },
+      {
+        "value": "every 4th",
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/TRK_outputs/density_every_4th/FMA_tract_seed_10seeds_PSOCT_visit_map.nii.gz",
+        "missing": true
+      }
+    ]
+  }
+}

@@ -121,19 +121,19 @@ print("All BedpostxData tests completed!")
 print("=" * 60)
 
 # =============================================================================
-# Test 6: Test ProbabilisticTracker
+# Test 6: Test PSOCTPriorityTracker (BedpostX-only mode)
 # =============================================================================
-print("\n[TEST 6] Testing ProbabilisticTracker...")
+print("\n[TEST 6] Testing PSOCTPriorityTracker (BedpostX-only mode)...")
 
-from tractography.tracker_draft import ProbabilisticTracker
+from tractography.tracker import PSOCTPriorityTracker
 
-# Initialize tracker
-tracker = ProbabilisticTracker(
+# Initialize tracker without PSOCT data (BedpostX-only mode)
+tracker = PSOCTPriorityTracker(
     bedpostx_data=data,
-    step_size=0.1,        # 0.5 mm steps
-    max_steps=20000,       # Maximum 2000 steps per direction
-    min_f_threshold=0.05, # Stop if fiber fraction < 5%
-    angle_threshold=90    # Stop if angle > 60 degrees
+    step_size=0.1,
+    max_steps=20000,
+    min_f_threshold=0.05,
+    angle_threshold=90,
 )
 
 print(f"\nTracker initialized:")
@@ -145,7 +145,7 @@ print(f"  Max angle: {np.degrees(tracker.max_angle):.0f} degrees")
 # Track a single streamline from center voxel
 print(f"\nTracking streamline from seed {center_voxel}...")
 start_time = time.time()
-streamline = tracker.track(center_voxel)
+streamline, _ = tracker.track(center_voxel)
 track_time = time.time() - start_time
 
 if streamline is not None:

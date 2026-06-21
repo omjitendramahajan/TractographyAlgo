@@ -1,0 +1,11 @@
+{
+  "n_samples": 56681,
+  "n_slides": 159,
+  "median_deg": 16.539797568368083,
+  "mean_deg": 24.47683680749471,
+  "p25_deg": 7.24959100944326,
+  "p75_deg": 35.51965217956967,
+  "frac_lt20": 0.5656216368800833,
+  "frac_lt30": 0.6982233905541539,
+  "definition": "acute in-plane angle (deg) between streamline tangent and held-out PS-OCT optic axis, projected into the slide plane"
+}

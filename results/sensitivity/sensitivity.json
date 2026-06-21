@@ -1,0 +1,84 @@
+{
+  "alpha": {
+    "rows": [
+      {
+        "value": 0.25,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/sweep_alpha_025/sweep_alpha_025_visit_map.nii.gz",
+        "volume_mm3": 25.933475334491295,
+        "dice_vs_baseline": 0.017367357363359762
+      },
+      {
+        "value": 0.5,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/hybrid_run_03/hybrid3_visit_map.nii.gz",
+        "volume_mm3": 564.4460199696476,
+        "dice_vs_baseline": 0.28018779342723005
+      },
+      {
+        "value": 0.75,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/sweep_alpha_075/sweep_alpha_075_visit_map.nii.gz",
+        "volume_mm3": 2672.2612652119124,
+        "dice_vs_baseline": 0.596727374877101
+      },
+      {
+        "value": 1.0,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/sweep_alpha_100/sweep_alpha_100_visit_map.nii.gz",
+        "volume_mm3": 2692.104303157243,
+        "dice_vs_baseline": 0.6227271136822217
+      }
+    ],
+    "volume_range_pct": 10280.808080808081,
+    "dice_vs_baseline_lo": 0.017367357363359762,
+    "dice_vs_baseline_hi": 0.6227271136822217,
+    "alpha1_dice_vs_baseline": 0.6227271136822217,
+    "alpha1_volume_diff_pct": 7.89361654455423
+  },
+  "theta": {
+    "rows": [
+      {
+        "value": 45,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/sweep_theta_45/sweep_theta_45_visit_map.nii.gz",
+        "volume_mm3": 37.393975797965986,
+        "dice_vs_baseline": 0.02486615636476262
+      },
+      {
+        "value": 60,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/hybrid_run_03/hybrid3_visit_map.nii.gz",
+        "volume_mm3": 564.4460199696476,
+        "dice_vs_baseline": 0.28018779342723005
+      },
+      {
+        "value": 80,
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/sweep_theta_80/sweep_theta_80_visit_map.nii.gz",
+        "volume_mm3": 4477.519298218445,
+        "dice_vs_baseline": 0.5498840728482681
+      }
+    ],
+    "volume_range_pct": 11873.905429071803,
+    "dice_vs_reference_lo": null,
+    "dice_vs_reference_hi": null,
+    "dice_vs_baseline_lo": 0.02486615636476262,
+    "dice_vs_baseline_hi": 0.5498840728482681
+  },
+  "density_thinning": {
+    "rows": [
+      {
+        "value": "full (every slice)",
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/hybrid_run_03/hybrid3_visit_map.nii.gz",
+        "volume_mm3": 564.4460199696476,
+        "dice_vs_baseline": 0.28018779342723005
+      },
+      {
+        "value": "every 2nd",
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/density_every_2nd/density_every_2nd_visit_map.nii.gz",
+        "volume_mm3": 627.118585361335,
+        "dice_vs_baseline": 0.2987437046875865
+      },
+      {
+        "value": "every 4th",
+        "path": "/Users/ommahajan/Desktop/Year_4/MEng Individual project/TractographyAlgo/tractography/Outputs_for_report/density_every_4th/density_every_4th_visit_map.nii.gz",
+        "volume_mm3": 1268.1862370010706,
+        "dice_vs_baseline": 0.4689980623788987
+      }
+    ]
+  }
+}
