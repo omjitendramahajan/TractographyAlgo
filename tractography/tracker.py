@@ -1,14 +1,18 @@
 """
-PSOCTPriorityTracker - Tractography with PSOCT priority over dMRI.
+PSOCTPriorityTracker - Microscopy-constrained probabilistic tractography.
 
-This module contains the core tracking algorithm that uses PSOCT
-orientations exclusively where available, falling back to BEDPOSTX only
-where microscopy data is absent. When `psoct_data` is None the tracker
-uses probtrackx-style stepping: at each post-seed step, the fibre
-population whose mean dyad best aligns with the current heading is
-picked, then a posterior sample is drawn from that population. The
-initial seed direction is drawn unconditionally from the full posterior.
-XTRACT-style target/exclude/stop masks are handled inline.
+Where usable PS-OCT data is available, fibre populations are scored using
+in-plane microscopy alignment and 3D trajectory alignment, weighted by
+(1 - alpha) and alpha respectively. The selected population supplies a
+BEDPOSTX posterior orientation sample; microscopy does not replace the
+sampled 3D direction. At a seed without a previous heading, population
+selection uses microscopy alignment alone.
+
+If the microscopy constraint cannot provide a direction, tracking falls
+back to diffusion-only selection based on the previous heading, then to
+unconditional posterior sampling if needed. With psoct_data=None, the
+same diffusion-only path is used. XTRACT-style target/exclude/stop masks
+are handled inline.
 """
 
 import math
@@ -20,10 +24,12 @@ from .stats import TrackingStats
 
 class PSOCTPriorityTracker:
     """
-    Tractography that uses PSOCT orientations when available,
-    falling back to BEDPOSTX only where microscopy data is absent.
+    Probabilistic tracking with PS-OCT-constrained fibre-population selection.
 
-    PSOCT data takes FULL PRIORITY - no blending or dilution with diffusion data.
+    Alpha weights trajectory alignment against in-plane microscopy alignment
+    when a previous heading exists. The score blends alignment evidence, not
+    orientation vectors. A 3D direction is sampled from the selected BEDPOSTX
+    population. Missing or unusable microscopy triggers diffusion-only fallback.
 
     Supports XTRACT-style masks (inline):
       - exclude_mask: any point entering => entire streamline discarded
